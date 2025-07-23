@@ -1,4 +1,8 @@
-# INTE264 Assignment 1: Core Blockchain Components
+# INTE264 Assignment 1: Crypto Data (Individual)
+
+## Student: Nguyen Chi Nghia s3979170
+
+## Date: 24/07/2025
 
 This repository contains TypeScript implementations for INTE264 Blockchain Technology Fundamentals Assignment 1, demonstrating fundamental cryptographic and data structuring techniques that underpin blockchain technology.
 
@@ -6,7 +10,7 @@ This repository contains TypeScript implementations for INTE264 Blockchain Techn
 
 **Course**: INTE264[1|2] - Blockchain Technology Fundamentals  
 **Assignment**: Core Blockchain Components Implementation  
-**Problems Implemented**: Problem 1 (Hash Functions) + Problem 2 (Merkle Trees) + Problem 3 (Digital Signatures)  
+**Problems Implemented**: Problem 1 (Hash Functions) + Problem 2 (Merkle Trees) + Problem 3 (Digital Signatures) + Problem 4 (Blockchain Timestamping)  
 **Language**: TypeScript with Node.js
 Crypto Data (Individual)
 
@@ -21,8 +25,8 @@ Crypto Data (Individual)
 
 ```bash
 # Clone the repository
-git clone <repository-url>
-cd uni
+git clone git@github.com:temmmy/INTE2641-ASM1-s3979170.git
+cd INTE2641-ASM1-s3979170
 
 # Install dependencies
 npm install
@@ -44,12 +48,14 @@ npm start
 npm start 1          # Problem 1: Hash Functions
 npm start 2          # Problem 2: Merkle Trees
 npm start 3          # Problem 3: Digital Signatures
+npm start 4          # Problem 4: Blockchain Timestamping
 npm start all        # Run all problems sequentially
 
 # Alternative commands
 npm start hash       # Problem 1
 npm start merkle     # Problem 2
 npm start signatures # Problem 3
+npm start blockchain # Problem 4
 npm start help       # Show usage information
 ```
 
@@ -174,6 +180,43 @@ npm run dev
 - `signMessage()`: Creates digital signatures using private keys
 - `verifySignature()`: Validates signatures and detects tampering
 
+## 📋 Problem 4: Blockchain Timestamping Implementation
+
+### Features Implemented
+
+**Part A.i - Block Data Structure:**
+
+- Essential blockchain fields: block ID, timestamp, data, previous hash, current hash, nonce
+- SHA-256 hash calculation for block integrity verification
+- Human-readable timestamp formatting and metadata tracking
+- Block size calculation and performance metrics
+
+**Part A.ii - Chain-of-Blocks Simulation:**
+
+- Genesis block creation with special properties (all-zero previous hash)
+- Sequential block linking through cryptographic hash chains
+- Mining delay simulation representing real-world proof-of-work
+- Comprehensive blockchain validation and integrity checking
+
+### Technical Implementation
+
+**Core Classes:**
+
+- `BlockchainTimestampingDemo`: Complete blockchain operations and simulation
+- `BlockchainTimestampingCLI`: Interactive demonstration interface
+
+**Key Interfaces:**
+
+- `Block`: Complete block structure with all essential blockchain fields
+- `Blockchain`: Full blockchain with metadata and statistics
+- `ValidationResult`: Comprehensive validation results with detailed analysis
+
+**Key Methods:**
+
+- `createBlock()`: Creates individual blocks with proper hash calculation
+- `createBlockchain()`: Builds complete blockchain with proper linking
+- `validateBlockchain()`: Validates entire chain integrity and consistency
+
 ## 📖 Written Analysis
 
 **Problem 1 Analysis**: [`src/problem1/analysis.md`](src/problem1/analysis.md)
@@ -193,28 +236,41 @@ npm run dev
 - Digital signature mathematics for RSA and ECDSA algorithms
 - Blockchain applications including transaction authorization and smart contracts
 
+**Problem 4 Analysis**: [`src/problem4/analysis.md`](src/problem4/analysis.md)
+
+- Blockchain data structure and block components
+- Chain-of-blocks linking and timestamping mechanisms
+- Immutability, integrity validation, and consensus properties
+
 ## 🏗️ Project Structure
 
 ```
-uni/
+
+INTE2641-ASM1-s3979170/
 ├── src/
 │   ├── index.ts                     # Main entry point with interactive menu
 │   ├── problem1/
 │   │   ├── index.ts                 # Problem 1 entry point
 │   │   ├── hash-functions.ts        # Hash function implementation
+implementation
 │   │   └── analysis.md              # Hash functions written analysis
 │   ├── problem2/
 │   │   ├── index.ts                 # Problem 2 entry point
 │   │   ├── merkle-trees.ts          # Merkle tree implementation
+implementation
 │   │   └── analysis.md              # Merkle trees written analysis
-│   └── problem3/
-│       ├── index.ts                 # Problem 3 entry point
-│       ├── digital-signatures.ts   # Digital signature implementation
-│       └── analysis.md              # Digital signatures written analysis
+│   ├── problem3/
+│   │   ├── index.ts                 # Problem 3 entry point
+│   │   ├── digital-signatures.ts   # Digital signature
+implementation
+│   │   └── analysis.md              # Digital signatures written analysis
+│   └── problem4/
+│       ├── index.ts                 # Problem 4 entry point
+│       ├── blockchain-timestamping.ts # Blockchain simulation implementation
+│       └── analysis.md              # Blockchain timestamping written analysis
 ├── dist/                            # Compiled JavaScript output
 ├── package.json                     # Project dependencies and scripts
 ├── tsconfig.json                   # TypeScript configuration
-├── CLAUDE.md                       # Development guidance
 └── README.md                       # This file
 ```
 
@@ -251,11 +307,11 @@ Using algorithm: SHA-256
 📊 PART A.i: AVALANCHE EFFECT DEMONSTRATION
 ===========================================
 
-Original Input: "Hello, Blockchain World!"
+Original Input: "Pudgy to the Moon!"
 Original Hash:  a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8
 
 1. Single character change (last char):
-   Modified Input: "Hello, Blockchain World""
+   Modified Input: "Pudgy to the Moon!""
    Modified Hash:  1f2e3d4c5b6a7988c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2
 
    📏 Difference Analysis:
@@ -284,7 +340,3 @@ This project was developed with assistance from OpenAI GPT-o4-mini for:
 - Formatting improvements for professional presentation
 
 All core logic, cryptographic understanding, and implementation decisions reflect original comprehension enhanced through AI-assisted formatting and documentation improvements.
-
-## 📄 License
-
-This project is developed for academic purposes as part of INTE264 coursework. Please ensure compliance with your institution's academic integrity policies if using this code as reference.

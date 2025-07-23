@@ -14,6 +14,7 @@
 import { runProblem1Demo } from './problem1';
 import { runProblem2Demo } from './problem2';
 import { runProblem3Demo } from './problem3';
+import { runProblem4Demo } from './problem4';
 import * as readline from 'readline';
 
 /**
@@ -48,6 +49,13 @@ const PROBLEMS: ProblemOption[] = [
         description: 'PKC key generation, message signing & verification with RSA/ECDSA',
         runner: runProblem3Demo,
         analysisFile: 'src/problem3/analysis.md'
+    },
+    {
+        id: '4',
+        title: 'Blockchain Timestamping',
+        description: 'Basic blockchain simulation with timestamping & chain-of-blocks',
+        runner: runProblem4Demo,
+        analysisFile: 'src/problem4/analysis.md'
     }
 ];
 
@@ -167,7 +175,7 @@ async function runAllProblems(): Promise<void> {
 function displayHelp(): void {
     console.log('\n📖 HELP - Available Commands:');
     console.log('============================');
-    console.log('1, 2    - Run specific problem demonstration');
+    console.log('1, 2, 3, 4 - Run specific problem demonstration');
     console.log('a       - Run all problems sequentially');
     console.log('h       - Show this help message');
     console.log('q       - Quit the application');
@@ -190,12 +198,13 @@ async function runInteractiveMenu(): Promise<void> {
             console.clear();
             displayMenu();
             
-            const choice = await askQuestion('🎯 Select an option (1, 2, 3, a, h for help, q to quit): ', rl);
+            const choice = await askQuestion('🎯 Select an option (1, 2, 3, 4, a, h for help, q to quit): ', rl);
             
             switch (choice.toLowerCase()) {
                 case '1':
                 case '2':
                 case '3':
+                case '4':
                     const success = await runProblem(choice);
                     if (success) {
                         console.log('\n⏸️  Press Enter to return to main menu...');
@@ -228,7 +237,7 @@ async function runInteractiveMenu(): Promise<void> {
                     return;
                     
                 default:
-                    console.log(`\n❌ Invalid choice: "${choice}". Please select 1, 2, 3, a, h, or q.`);
+                    console.log(`\n❌ Invalid choice: "${choice}". Please select 1, 2, 3, 4, a, h, or q.`);
                     console.log('⏸️  Press Enter to continue...');
                     await askQuestion('', rl);
                     break;
@@ -271,6 +280,13 @@ async function main(): Promise<void> {
                     await runProblem('3');
                     break;
                     
+                case '4':
+                case 'problem4':
+                case 'blockchain':
+                case 'timestamping':
+                    await runProblem('4');
+                    break;
+                    
                 case 'all':
                     await runAllProblems();
                     break;
@@ -289,6 +305,7 @@ async function main(): Promise<void> {
                     console.log('  npm start 1                  # Run Problem 1 (Hash Functions)');
                     console.log('  npm start 2                  # Run Problem 2 (Merkle Trees)');
                     console.log('  npm start 3                  # Run Problem 3 (Digital Signatures)');
+                    console.log('  npm start 4                  # Run Problem 4 (Blockchain Timestamping)');
                     console.log('  npm start all                # Run all problems');
                     console.log('');
                     console.log('Alternative commands:');
@@ -298,6 +315,9 @@ async function main(): Promise<void> {
                     console.log('  npm start merkle             # Run Problem 2');
                     console.log('  npm start problem3           # Run Problem 3');
                     console.log('  npm start signatures         # Run Problem 3');
+                    console.log('  npm start problem4           # Run Problem 4');
+                    console.log('  npm start blockchain         # Run Problem 4');
+                    console.log('  npm start timestamping       # Run Problem 4');
                     console.log('');
                     break;
                     
