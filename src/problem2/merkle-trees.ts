@@ -706,11 +706,11 @@ export class MerkleTreeCLI {
 
     // Sample transaction data for demonstration
     const sampleTransactions = [
-      "TX001: Alice sends 10 BTC to Bob",
-      "TX002: Charlie sends 5 BTC to David",
-      "TX003: Eve sends 15 BTC to Frank",
-      "TX004: Grace sends 8 BTC to Henry",
-      "TX005: Ivan sends 12 BTC to Jack",
+      "TX001: Nikita sends 100000 BTC to Sean",
+      "TX002: Sean sends 100 BTC to Nikita",
+      "TX004: Minh sends 500 BTC to Nikita",
+      "TX003: Kiet sends 800 BTC to Nikita",
+      "TX005: Pibot sends 4000 BTC to Nikita",
     ];
 
     console.log("🎲 Using sample transaction data:");

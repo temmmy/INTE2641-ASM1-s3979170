@@ -473,7 +473,7 @@ export class HashFunctionCLI {
     console.log("=========================================\n");
 
     // Simulate user input (in real scenario, this would be from stdin)
-    const defaultInput = "Hello, Blockchain World!";
+    const defaultInput = "Bulliish on Bonk =)))";
     console.log(`Using input: "${defaultInput}"`);
     console.log(
       "(In interactive mode, you would be prompted to enter your own string)\n"

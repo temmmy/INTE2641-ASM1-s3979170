@@ -6,8 +6,9 @@ This repository contains TypeScript implementations for INTE264 Blockchain Techn
 
 **Course**: INTE264[1|2] - Blockchain Technology Fundamentals  
 **Assignment**: Core Blockchain Components Implementation  
-**Problems Implemented**: Problem 1 (Hash Functions) + Problem 2 (Merkle Trees)  
+**Problems Implemented**: Problem 1 (Hash Functions) + Problem 2 (Merkle Trees) + Problem 3 (Digital Signatures)  
 **Language**: TypeScript with Node.js
+Crypto Data (Individual)
 
 ## 🚀 Quick Start
 
@@ -42,11 +43,13 @@ npm start
 # Run specific problems directly
 npm start 1          # Problem 1: Hash Functions
 npm start 2          # Problem 2: Merkle Trees
+npm start 3          # Problem 3: Digital Signatures
 npm start all        # Run all problems sequentially
 
 # Alternative commands
 npm start hash       # Problem 1
 npm start merkle     # Problem 2
+npm start signatures # Problem 3
 npm start help       # Show usage information
 ```
 
@@ -62,6 +65,7 @@ npm run dev
 ### Features Implemented
 
 **Part A.i - Avalanche Effect Demonstration:**
+
 - Takes user input and computes SHA-256 hash
 - Makes minimal modifications (1 bit, 1 character, case changes, etc.)
 - Calculates and displays Hamming distances at both character and bit levels
@@ -69,6 +73,7 @@ npm run dev
 - Provides educational analysis of results
 
 **Part A.ii - Pre-image Resistance Demonstration:**
+
 - Attempts to find pre-images for target hashes through brute force
 - Uses both random and sequential search strategies
 - Configurable attempt limits (default: 50,000 attempts)
@@ -78,10 +83,12 @@ npm run dev
 ### Technical Implementation
 
 **Core Classes:**
+
 - `HashFunctionDemo`: Main demonstration logic and cryptographic operations
 - `HashFunctionCLI`: Command-line interface and user interaction
 
 **Key Methods:**
+
 - `demonstrateAvalancheEffect()`: Shows hash sensitivity to input changes
 - `demonstratePreImageResistance()`: Attempts hash reversal through brute force
 - `calculateHammingDistance()`: Computes differences between hash outputs
@@ -91,18 +98,21 @@ npm run dev
 ### Features Implemented
 
 **Part A.i - Merkle Tree Construction:**
+
 - Builds complete binary tree from list of data items (transaction IDs)
 - Handles odd numbers of nodes by duplicating last node at each level
 - Provides detailed construction logging and tree visualization
 - Outputs final Merkle root hash
 
 **Part A.ii - Merkle Proof Generation:**
+
 - Generates minimal proof for any data item in the tree
 - Collects sibling hashes along path from leaf to root
 - Records hash positions (left/right) for reconstruction
 - Calculates proof size and efficiency metrics
 
 **Part A.iii - Merkle Proof Verification:**
+
 - Verifies proofs by reconstructing path to root
 - Step-by-step hash combination following proof instructions
 - Compares reconstructed root with expected Merkle root
@@ -111,29 +121,77 @@ npm run dev
 ### Technical Implementation
 
 **Core Classes:**
+
 - `MerkleTreeDemo`: Complete Merkle tree operations and proof system
 - `MerkleTreeCLI`: Interactive demonstration interface
 
 **Key Interfaces:**
+
 - `MerkleNode`: Tree node structure with hash and child references
 - `MerkleProof`: Complete proof with steps and metadata
 - `MerkleProofStep`: Individual proof step with hash and position
 
 **Key Methods:**
+
 - `constructMerkleTree()`: Builds tree from data items
 - `generateMerkleProof()`: Creates proof for specific data item
 - `verifyMerkleProof()`: Validates proof against known root
 
+## 📋 Problem 3: Digital Signatures Implementation
+
+### Features Implemented
+
+**Part A.i - Key Pair Generation:**
+
+- Generates RSA (2048, 3072, 4096-bit) and ECDSA (256, 384, 521-bit) key pairs
+- Uses industry-standard curves (secp256k1, secp384r1, secp521r1)
+- Provides detailed key generation analysis and security metrics
+- Outputs keys in PEM format with comprehensive metadata
+
+**Part A.ii - Message Signing and Verification:**
+
+- Signs messages using SHA-256 hashing with private keys
+- Supports both RSA and ECDSA signature algorithms
+- Verifies signatures using public keys with tamper detection
+- Demonstrates authentication, integrity, and non-repudiation properties
+
+### Technical Implementation
+
+**Core Classes:**
+
+- `DigitalSignatureDemo`: Complete PKC operations and signature system
+- `DigitalSignatureCLI`: Interactive demonstration interface
+
+**Key Interfaces:**
+
+- `KeyPair`: RSA/ECDSA key pair with metadata and security information
+- `DigitalSignature`: Complete signature with message hash and algorithm details
+- `VerificationResult`: Detailed verification results with performance metrics
+
+**Key Methods:**
+
+- `generateKeyPair()`: Creates RSA or ECDSA key pairs with specified sizes
+- `signMessage()`: Creates digital signatures using private keys
+- `verifySignature()`: Validates signatures and detects tampering
+
 ## 📖 Written Analysis
 
 **Problem 1 Analysis**: [`src/problem1/analysis.md`](src/problem1/analysis.md)
+
 - SHA-256 technical explanation and cryptographic properties
 - Blockchain applications and security vulnerability analysis
 
 **Problem 2 Analysis**: [`src/problem2/analysis.md`](src/problem2/analysis.md)
+
 - Merkle tree structure and implementation logic
 - SPV client functionality and blockchain efficiency benefits
 - Mathematical efficiency analysis and real-world applications
+
+**Problem 3 Analysis**: [`src/problem3/analysis.md`](src/problem3/analysis.md)
+
+- Public Key Cryptography fundamentals and security properties
+- Digital signature mathematics for RSA and ECDSA algorithms
+- Blockchain applications including transaction authorization and smart contracts
 
 ## 🏗️ Project Structure
 
@@ -145,10 +203,14 @@ uni/
 │   │   ├── index.ts                 # Problem 1 entry point
 │   │   ├── hash-functions.ts        # Hash function implementation
 │   │   └── analysis.md              # Hash functions written analysis
-│   └── problem2/
-│       ├── index.ts                 # Problem 2 entry point
-│       ├── merkle-trees.ts          # Merkle tree implementation
-│       └── analysis.md              # Merkle trees written analysis
+│   ├── problem2/
+│   │   ├── index.ts                 # Problem 2 entry point
+│   │   ├── merkle-trees.ts          # Merkle tree implementation
+│   │   └── analysis.md              # Merkle trees written analysis
+│   └── problem3/
+│       ├── index.ts                 # Problem 3 entry point
+│       ├── digital-signatures.ts   # Digital signature implementation
+│       └── analysis.md              # Digital signatures written analysis
 ├── dist/                            # Compiled JavaScript output
 ├── package.json                     # Project dependencies and scripts
 ├── tsconfig.json                   # TypeScript configuration

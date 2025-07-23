@@ -28,14 +28,22 @@ npm run clean
 # Compile TypeScript to JavaScript
 npm run build
 
-# Run the compiled application
+# Run with interactive menu (default)
 npm start
 
-# Run directly with ts-node (development)
-npm run dev
+# Run specific problems directly
+npm start 1                          # Problem 1: Hash Functions
+npm start 2                          # Problem 2: Merkle Trees
+npm start 3                          # Problem 3: Digital Signatures
+npm start all                        # Run all problems sequentially
 
-# Run specific problem demonstrations
-npx ts-node src/index.ts                    # Problem 1: Hash Functions
+# Alternative problem selection
+npm start hash                       # Problem 1 (Hash Functions)
+npm start merkle                     # Problem 2 (Merkle Trees)
+npm start signatures                 # Problem 3 (Digital Signatures)
+
+# Development mode with ts-node
+npm run dev
 ```
 
 ### Code Quality and Testing
@@ -54,20 +62,25 @@ npm test
 
 ### Core Components
 
-**`src/problem1-hash-functions.ts`** - Complete implementation of Problem 1 (Hash Functions)
-- `HashFunctionDemo` class: Core demonstration logic for avalanche effect and pre-image resistance
-- `HashFunctionCLI` class: Command-line interface for interactive demonstrations
-- Extensive inline documentation explaining cryptographic concepts
-- Performance metrics and educational analysis
+**`src/index.ts`** - Main application entry point with interactive menu system
+- Interactive problem selection menu
+- Command-line argument parsing for direct execution
+- Comprehensive help system and error handling
 
-**`src/problem1-analysis.md`** - Comprehensive written analysis for Problem 1
-- Detailed explanations of SHA-256 properties and blockchain applications
-- Security vulnerability analysis and implications
-- Academic-level technical documentation
+**`src/problem1/`** - Problem 1: Hash Functions
+- `hash-functions.ts`: Complete implementation with avalanche effect and pre-image resistance demos
+- `analysis.md`: Comprehensive written analysis of SHA-256 and blockchain applications
+- `index.ts`: Problem 1 entry point and exports
 
-**`src/index.ts`** - Main application entry point
-- Orchestrates demonstration execution
-- Error handling and user interface coordination
+**`src/problem2/`** - Problem 2: Merkle Trees  
+- `merkle-trees.ts`: Complete tree construction, proof generation, and verification
+- `analysis.md`: Detailed analysis of SPV functionality and blockchain efficiency
+- `index.ts`: Problem 2 entry point and exports
+
+**`src/problem3/`** - Problem 3: Digital Signatures
+- `digital-signatures.ts`: RSA/ECDSA key generation, signing, and verification
+- `analysis.md`: PKC principles, security properties, and blockchain applications
+- `index.ts`: Problem 3 entry point and exports
 
 ### Design Patterns and Principles
 
@@ -99,6 +112,12 @@ npm test
 - Cryptographic proof verification with step-by-step reconstruction
 - Tree visualization and educational output
 
+**Digital Signature Operations (Problem 3):**
+- RSA and ECDSA key pair generation with multiple key sizes
+- Message signing using SHA-256 hashing and private keys
+- Signature verification with tamper detection and security analysis
+- PKC educational demonstrations and blockchain application examples
+
 **Performance Considerations:**
 - Includes performance timing and metrics collection
 - Configurable attempt limits to balance demonstration completeness with execution time
@@ -128,13 +147,23 @@ npm test
 ### File Organization
 ```
 src/
-├── index.ts                      # Main entry point for all problems
-├── problem1-hash-functions.ts    # Problem 1 implementation
-├── problem1-analysis.md          # Problem 1 written analysis
-├── problem2-merkle-trees.ts      # Problem 2 implementation
-├── problem2-analysis.md          # Problem 2 written analysis
-├── problem3-digital-sigs.ts      # Problem 3 implementation (future)
-└── problem4-blockchain-sim.ts    # Problem 4 implementation (future)
+├── index.ts                      # Main entry point with interactive menu
+├── problem1/
+│   ├── index.ts                  # Problem 1 entry point
+│   ├── hash-functions.ts         # Hash function implementation
+│   └── analysis.md               # Written analysis document
+├── problem2/
+│   ├── index.ts                  # Problem 2 entry point
+│   ├── merkle-trees.ts          # Merkle tree implementation
+│   └── analysis.md               # Written analysis document
+├── problem3/                     # Problem 3 implementation (future)
+│   ├── index.ts
+│   ├── digital-signatures.ts
+│   └── analysis.md
+└── problem4/                     # Problem 4 implementation (future)
+    ├── index.ts
+    ├── blockchain-simulation.ts
+    └── analysis.md
 ```
 
 ### Testing and Validation

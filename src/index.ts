@@ -13,6 +13,7 @@
 
 import { runProblem1Demo } from './problem1';
 import { runProblem2Demo } from './problem2';
+import { runProblem3Demo } from './problem3';
 import * as readline from 'readline';
 
 /**
@@ -40,6 +41,13 @@ const PROBLEMS: ProblemOption[] = [
         description: 'Tree construction, proof generation & verification for SPV',
         runner: runProblem2Demo,
         analysisFile: 'src/problem2/analysis.md'
+    },
+    {
+        id: '3',
+        title: 'Digital Signatures',
+        description: 'PKC key generation, message signing & verification with RSA/ECDSA',
+        runner: runProblem3Demo,
+        analysisFile: 'src/problem3/analysis.md'
     }
 ];
 
@@ -182,11 +190,12 @@ async function runInteractiveMenu(): Promise<void> {
             console.clear();
             displayMenu();
             
-            const choice = await askQuestion('🎯 Select an option (1, 2, a, h for help, q to quit): ', rl);
+            const choice = await askQuestion('🎯 Select an option (1, 2, 3, a, h for help, q to quit): ', rl);
             
             switch (choice.toLowerCase()) {
                 case '1':
                 case '2':
+                case '3':
                     const success = await runProblem(choice);
                     if (success) {
                         console.log('\n⏸️  Press Enter to return to main menu...');
@@ -219,7 +228,7 @@ async function runInteractiveMenu(): Promise<void> {
                     return;
                     
                 default:
-                    console.log(`\n❌ Invalid choice: "${choice}". Please select 1, 2, a, h, or q.`);
+                    console.log(`\n❌ Invalid choice: "${choice}". Please select 1, 2, 3, a, h, or q.`);
                     console.log('⏸️  Press Enter to continue...');
                     await askQuestion('', rl);
                     break;
@@ -255,6 +264,13 @@ async function main(): Promise<void> {
                     await runProblem('2');
                     break;
                     
+                case '3':
+                case 'problem3':
+                case 'signatures':
+                case 'crypto':
+                    await runProblem('3');
+                    break;
+                    
                 case 'all':
                     await runAllProblems();
                     break;
@@ -272,6 +288,7 @@ async function main(): Promise<void> {
                     console.log('Direct execution:');
                     console.log('  npm start 1                  # Run Problem 1 (Hash Functions)');
                     console.log('  npm start 2                  # Run Problem 2 (Merkle Trees)');
+                    console.log('  npm start 3                  # Run Problem 3 (Digital Signatures)');
                     console.log('  npm start all                # Run all problems');
                     console.log('');
                     console.log('Alternative commands:');
@@ -279,6 +296,8 @@ async function main(): Promise<void> {
                     console.log('  npm start hash               # Run Problem 1');
                     console.log('  npm start problem2           # Run Problem 2');
                     console.log('  npm start merkle             # Run Problem 2');
+                    console.log('  npm start problem3           # Run Problem 3');
+                    console.log('  npm start signatures         # Run Problem 3');
                     console.log('');
                     break;
                     
