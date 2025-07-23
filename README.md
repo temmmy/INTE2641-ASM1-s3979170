@@ -6,7 +6,7 @@ This repository contains TypeScript implementations for INTE264 Blockchain Techn
 
 **Course**: INTE264[1|2] - Blockchain Technology Fundamentals  
 **Assignment**: Core Blockchain Components Implementation  
-**Problem Implemented**: Problem 1 - Hash Functions  
+**Problems Implemented**: Problem 1 (Hash Functions) + Problem 2 (Merkle Trees)  
 **Language**: TypeScript with Node.js
 
 ## 🚀 Quick Start
@@ -45,7 +45,6 @@ npm run dev
 ### Features Implemented
 
 **Part A.i - Avalanche Effect Demonstration:**
-
 - Takes user input and computes SHA-256 hash
 - Makes minimal modifications (1 bit, 1 character, case changes, etc.)
 - Calculates and displays Hamming distances at both character and bit levels
@@ -53,57 +52,87 @@ npm run dev
 - Provides educational analysis of results
 
 **Part A.ii - Pre-image Resistance Demonstration:**
-
 - Attempts to find pre-images for target hashes through brute force
 - Uses both random and sequential search strategies
 - Configurable attempt limits (default: 50,000 attempts)
 - Reports performance metrics and search space coverage
 - Demonstrates computational infeasibility of hash reversal
 
-**Educational Features:**
+### Technical Implementation
 
-- Comprehensive console output explaining each step
-- Performance timing and metrics collection
-- Progress reporting during long operations
-- Detailed analysis connecting results to cryptographic theory
+**Core Classes:**
+- `HashFunctionDemo`: Main demonstration logic and cryptographic operations
+- `HashFunctionCLI`: Command-line interface and user interaction
+
+**Key Methods:**
+- `demonstrateAvalancheEffect()`: Shows hash sensitivity to input changes
+- `demonstratePreImageResistance()`: Attempts hash reversal through brute force
+- `calculateHammingDistance()`: Computes differences between hash outputs
+
+## 📋 Problem 2: Merkle Trees Implementation
+
+### Features Implemented
+
+**Part A.i - Merkle Tree Construction:**
+- Builds complete binary tree from list of data items (transaction IDs)
+- Handles odd numbers of nodes by duplicating last node at each level
+- Provides detailed construction logging and tree visualization
+- Outputs final Merkle root hash
+
+**Part A.ii - Merkle Proof Generation:**
+- Generates minimal proof for any data item in the tree
+- Collects sibling hashes along path from leaf to root
+- Records hash positions (left/right) for reconstruction
+- Calculates proof size and efficiency metrics
+
+**Part A.iii - Merkle Proof Verification:**
+- Verifies proofs by reconstructing path to root
+- Step-by-step hash combination following proof instructions
+- Compares reconstructed root with expected Merkle root
+- Provides detailed verification logging and security analysis
 
 ### Technical Implementation
 
 **Core Classes:**
+- `MerkleTreeDemo`: Complete Merkle tree operations and proof system
+- `MerkleTreeCLI`: Interactive demonstration interface
 
-- `HashFunctionDemo`: Main demonstration logic and cryptographic operations
-- `HashFunctionCLI`: Command-line interface and user interaction
-- Extensive TypeScript types and documentation
+**Key Interfaces:**
+- `MerkleNode`: Tree node structure with hash and child references
+- `MerkleProof`: Complete proof with steps and metadata
+- `MerkleProofStep`: Individual proof step with hash and position
 
 **Key Methods:**
-
-- `demonstrateAvalancheEffect()`: Shows hash sensitivity to input changes
-- `demonstratePreImageResistance()`: Attempts hash reversal through brute force
-- `calculateHammingDistance()`: Computes differences between hash outputs
-- `calculateBitHammingDistance()`: Bit-level analysis of hash differences
+- `constructMerkleTree()`: Builds tree from data items
+- `generateMerkleProof()`: Creates proof for specific data item
+- `verifyMerkleProof()`: Validates proof against known root
 
 ## 📖 Written Analysis
 
-The complete written analysis for Problem 1B is available in [`src/problem1-analysis.md`](src/problem1-analysis.md), covering:
+**Problem 1 Analysis**: [`src/problem1-analysis.md`](src/problem1-analysis.md)
+- SHA-256 technical explanation and cryptographic properties
+- Blockchain applications and security vulnerability analysis
 
-- **SHA-256 Technical Explanation**: Algorithm structure, mathematical foundation, security properties
-- **Cryptographic Properties**: Pre-image resistance, second pre-image resistance, collision resistance
-- **Blockchain Applications**: Block chaining, Merkle trees, transaction verification
-- **Security Vulnerability Analysis**: Impact of hash function compromise on blockchain systems
+**Problem 2 Analysis**: [`src/problem2-analysis.md`](src/problem2-analysis.md)
+- Merkle tree structure and implementation logic
+- SPV client functionality and blockchain efficiency benefits
+- Mathematical efficiency analysis and real-world applications
 
 ## 🏗️ Project Structure
 
 ```
 uni/
 ├── src/
-│   ├── index.ts                    # Main entry point
-│   ├── problem1-hash-functions.ts  # Hash function implementation
-│   └── problem1-analysis.md        # Written analysis document
-├── dist/                           # Compiled JavaScript output
-├── package.json                    # Project dependencies and scripts
-├── tsconfig.json                  # TypeScript configuration
-├── CLAUDE.md                      # Development guidance
-└── README.md                      # This file
+│   ├── index.ts                     # Main entry point for both problems
+│   ├── problem1-hash-functions.ts   # Hash function implementation
+│   ├── problem1-analysis.md         # Hash functions written analysis
+│   ├── problem2-merkle-trees.ts     # Merkle tree implementation
+│   └── problem2-analysis.md         # Merkle trees written analysis
+├── dist/                            # Compiled JavaScript output
+├── package.json                     # Project dependencies and scripts
+├── tsconfig.json                   # TypeScript configuration
+├── CLAUDE.md                       # Development guidance
+└── README.md                       # This file
 ```
 
 ## 🔧 Development Scripts
