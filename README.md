@@ -33,6 +33,23 @@ npm run build
 npm start
 ```
 
+### Interactive Usage
+
+```bash
+# Run with interactive menu (default)
+npm start
+
+# Run specific problems directly
+npm start 1          # Problem 1: Hash Functions
+npm start 2          # Problem 2: Merkle Trees
+npm start all        # Run all problems sequentially
+
+# Alternative commands
+npm start hash       # Problem 1
+npm start merkle     # Problem 2
+npm start help       # Show usage information
+```
+
 ### Development Mode
 
 ```bash
@@ -109,11 +126,11 @@ npm run dev
 
 ## 📖 Written Analysis
 
-**Problem 1 Analysis**: [`src/problem1-analysis.md`](src/problem1-analysis.md)
+**Problem 1 Analysis**: [`src/problem1/analysis.md`](src/problem1/analysis.md)
 - SHA-256 technical explanation and cryptographic properties
 - Blockchain applications and security vulnerability analysis
 
-**Problem 2 Analysis**: [`src/problem2-analysis.md`](src/problem2-analysis.md)
+**Problem 2 Analysis**: [`src/problem2/analysis.md`](src/problem2/analysis.md)
 - Merkle tree structure and implementation logic
 - SPV client functionality and blockchain efficiency benefits
 - Mathematical efficiency analysis and real-world applications
@@ -123,11 +140,15 @@ npm run dev
 ```
 uni/
 ├── src/
-│   ├── index.ts                     # Main entry point for both problems
-│   ├── problem1-hash-functions.ts   # Hash function implementation
-│   ├── problem1-analysis.md         # Hash functions written analysis
-│   ├── problem2-merkle-trees.ts     # Merkle tree implementation
-│   └── problem2-analysis.md         # Merkle trees written analysis
+│   ├── index.ts                     # Main entry point with interactive menu
+│   ├── problem1/
+│   │   ├── index.ts                 # Problem 1 entry point
+│   │   ├── hash-functions.ts        # Hash function implementation
+│   │   └── analysis.md              # Hash functions written analysis
+│   └── problem2/
+│       ├── index.ts                 # Problem 2 entry point
+│       ├── merkle-trees.ts          # Merkle tree implementation
+│       └── analysis.md              # Merkle trees written analysis
 ├── dist/                            # Compiled JavaScript output
 ├── package.json                     # Project dependencies and scripts
 ├── tsconfig.json                   # TypeScript configuration
