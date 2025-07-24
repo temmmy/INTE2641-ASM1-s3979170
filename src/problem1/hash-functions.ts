@@ -118,7 +118,7 @@ export class HashFunctionDemo {
       },
       {
         description: "Case change (first character)",
-        modify: (str: string) => str.charAt(0).toUpperCase() + str.slice(1),
+        modify: (str: string) => str.charAt(0).toLowerCase() + str.slice(1),
       },
       {
         description: "Add single space at end",
@@ -473,14 +473,14 @@ export class HashFunctionCLI {
     console.log("=========================================\n");
 
     // Simulate user input (in real scenario, this would be from stdin)
-    const defaultInput = "Bulliish on Bonk =)))";
+    const defaultInput = "Bullish on Bonk =)))";
     console.log(`Using input: "${defaultInput}"`);
     console.log(
       "(In interactive mode, you would be prompted to enter your own string)\n"
     );
 
     // Run the complete demonstration
-    this.demo.runCompleteDemo(defaultInput, 50000);
+    this.demo.runCompleteDemo(defaultInput, 1000000);
 
     console.log("💡 NEXT STEPS:");
     console.log(
