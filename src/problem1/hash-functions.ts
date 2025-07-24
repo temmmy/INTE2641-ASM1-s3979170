@@ -4,7 +4,7 @@
 // Author: Nguyen Chi Nghia
 // Student ID: s3979170
 
-import { createHash, randomBytes } from "crypto";
+import { createHash } from "crypto";
 import { performance } from "perf_hooks";
 
 /**
